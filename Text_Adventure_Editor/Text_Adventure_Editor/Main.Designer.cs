@@ -28,26 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.Main_Drop_Down = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.itemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.menuStrip1.SuspendLayout();
+            this.Main_Drop_Down.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // Main_Drop_Down
             // 
-            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.Main_Drop_Down.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.Main_Drop_Down.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.itemToolStripMenuItem,
             this.locationToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(733, 28);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Main_Drop_Down.Location = new System.Drawing.Point(0, 0);
+            this.Main_Drop_Down.Name = "Main_Drop_Down";
+            this.Main_Drop_Down.Padding = new System.Windows.Forms.Padding(10, 2, 0, 2);
+            this.Main_Drop_Down.Size = new System.Drawing.Size(733, 28);
+            this.Main_Drop_Down.TabIndex = 0;
+            this.Main_Drop_Down.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -70,18 +70,18 @@
             this.locationToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.locationToolStripMenuItem.Text = "Location";
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 408);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Controls.Add(this.Main_Drop_Down);
+            this.MainMenuStrip = this.Main_Drop_Down;
+            this.Name = "Main";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.Main_Drop_Down.ResumeLayout(false);
+            this.Main_Drop_Down.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -89,7 +89,7 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip Main_Drop_Down;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem itemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem locationToolStripMenuItem;
