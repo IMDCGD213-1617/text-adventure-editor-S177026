@@ -99,12 +99,120 @@ namespace Text_Adventure_Editor
             private int levelNo;
             private string roomTitle;
             private string roomDescription;
-            private List<NewExits> ExitsToAdd;
-            public List<NewItems> NewItemsToAdd;
+            private List<NewExits> exitsToAdd;
+            public List<NewItems> inventory;
 
+            public NewLevels()
+            {
 
-
+            }
+            public string RoomTitle
+            {
+                get
+                {
+                    return roomTitle;
+                }
+                set
+                {
+                    roomTitle = value;
+                }
+            }
+            public string RoomDescription
+            {
+                get
+                {
+                    return roomDescription;
+                }
+                set
+                {
+                    roomDescription = value;
+                }            
+            }
+            public int LevelNo
+            {
+                get
+                {
+                    return levelNo;               
+                }
+                set
+                {
+                    levelNo = value;
+                }
+            }
+            public List<NewExits> ExitsToAdd
+            {
+                get
+                {
+                    return exitsToAdd;              
+                }
+                set
+                {
+                    exitsToAdd = value;
+                }
+            }
+            public List<NewItems> NewItems
+            {
+                get
+                {
+                    return inventory;
+                }
+                set
+                {
+                    inventory = value;
+                }
+            }
         }
+
+        public enum Directions
+        {
+            North, South, East, West
+        };
+
+        public class NewExits
+        {
+            public static string[] shortDirections = { "N", "S", "E", "W" };
+            private int leadsTo = 0;
+            private Directions direction;
+            
+            public NewExits()
+            {
+
+            } 
+            public int LeadsTo
+            {
+                get
+                {
+                    return leadsTo;
+                }
+                set
+                {
+                    leadsTo = value;
+                }
+            }
+            public string ItemDescription
+            {
+                get
+                {
+                    return itemDescription;
+                }
+                set
+                {
+                    ItemDescription = value;
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
