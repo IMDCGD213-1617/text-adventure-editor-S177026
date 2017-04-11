@@ -53,7 +53,10 @@
             this.leadsTo1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.Add_Complete_Level = new System.Windows.Forms.Button();
+            this.AddCompleteLevel = new System.Windows.Forms.Button();
+            this.LevelNumberMain = new System.Windows.Forms.Label();
+            this.ReviewNewLevels = new System.Windows.Forms.TextBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.Main_Drop_Down.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -294,14 +297,44 @@
             this.label2.TabIndex = 46;
             this.label2.Text = "Adding Level";
             // 
-            // Add_Complete_Level
+            // AddCompleteLevel
             // 
-            this.Add_Complete_Level.Location = new System.Drawing.Point(785, 429);
-            this.Add_Complete_Level.Name = "Add_Complete_Level";
-            this.Add_Complete_Level.Size = new System.Drawing.Size(147, 65);
-            this.Add_Complete_Level.TabIndex = 47;
-            this.Add_Complete_Level.Text = "Add Level";
-            this.Add_Complete_Level.UseVisualStyleBackColor = true;
+            this.AddCompleteLevel.Location = new System.Drawing.Point(357, 429);
+            this.AddCompleteLevel.Name = "AddCompleteLevel";
+            this.AddCompleteLevel.Size = new System.Drawing.Size(147, 65);
+            this.AddCompleteLevel.TabIndex = 47;
+            this.AddCompleteLevel.Text = "Add Level";
+            this.AddCompleteLevel.UseVisualStyleBackColor = true;
+            this.AddCompleteLevel.Click += new System.EventHandler(this.AddCompleteLevel_Click);
+            // 
+            // LevelNumberMain
+            // 
+            this.LevelNumberMain.AutoSize = true;
+            this.LevelNumberMain.ForeColor = System.Drawing.Color.White;
+            this.LevelNumberMain.Location = new System.Drawing.Point(279, 34);
+            this.LevelNumberMain.Name = "LevelNumberMain";
+            this.LevelNumberMain.Size = new System.Drawing.Size(100, 17);
+            this.LevelNumberMain.TabIndex = 48;
+            this.LevelNumberMain.Text = "Level Number:";
+            // 
+            // ReviewNewLevels
+            // 
+            this.ReviewNewLevels.BackColor = System.Drawing.Color.White;
+            this.ReviewNewLevels.ForeColor = System.Drawing.Color.Black;
+            this.ReviewNewLevels.Location = new System.Drawing.Point(675, 332);
+            this.ReviewNewLevels.Multiline = true;
+            this.ReviewNewLevels.Name = "ReviewNewLevels";
+            this.ReviewNewLevels.Size = new System.Drawing.Size(257, 162);
+            this.ReviewNewLevels.TabIndex = 49;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(809, 289);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(123, 37);
+            this.button3.TabIndex = 50;
+            this.button3.Text = "Review Levels";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -309,7 +342,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(944, 506);
-            this.Controls.Add(this.Add_Complete_Level);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ReviewNewLevels);
+            this.Controls.Add(this.LevelNumberMain);
+            this.Controls.Add(this.AddCompleteLevel);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label5);
@@ -370,7 +406,10 @@
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button Add_Complete_Level;
+        private System.Windows.Forms.Button AddCompleteLevel;
+        private System.Windows.Forms.Label LevelNumberMain;
+        private System.Windows.Forms.TextBox ReviewNewLevels;
+        private System.Windows.Forms.Button button3;
     }
 }
 
