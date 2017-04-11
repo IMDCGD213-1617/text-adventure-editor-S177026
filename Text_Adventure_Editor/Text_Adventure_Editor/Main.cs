@@ -32,7 +32,7 @@ namespace Text_Adventure_Editor
             InitializeComponent();
             LevelNumberMain.Text = "Level Number:" + levelnumber;
             ReviewNewLevels.ScrollBars = ScrollBars.Vertical;
-            LevelNumberMain.Font = new Font("Arial", 24, FontStyle.Bold);
+            LevelNumberMain.Font = new Font("Arial", 15, FontStyle.Bold);
 
 
         }
@@ -49,11 +49,11 @@ namespace Text_Adventure_Editor
 
             toAdd = new NewLevels();
             toAdd.LevelNo = levelnumber;
-            toAdd.NewExits = ExitsToAdd;
+            toAdd.ExitsToAdd = ExitsToAdd;
             toAdd.RoomTitle = New_Level_Name.Text;
             toAdd.RoomDescription = New_Level_Description.Text;
-            toAdd.Inventory = NewItemsToAdd;
-            NewLevels.Add(toAdd);
+            toAdd.inventory = NewItemsToAdd;
+            NewLevelsToAdd.Add(toAdd);
             levelnumber++;
             LevelNumberMain.Text = "Level: " + levelnumber;
             ExitsToAdd = new List<NewExits>();
@@ -73,7 +73,7 @@ namespace Text_Adventure_Editor
         {
             try
             {
-                SaveValues(Levels);
+                SaveValues(NewLevelsToAdd);
             }
             catch (Exception ex)
             {
@@ -163,6 +163,39 @@ namespace Text_Adventure_Editor
             }
         }
 
+        public class NewItems
+        {
+            private string itemName;
+            private string itemDescription;
+
+            public NewItems()
+            {
+
+            }
+
+            public string ItemName
+            {
+                get
+                {
+                    return itemName;
+                }
+                set
+                {
+                    itemName = value;
+                }
+            }
+            public string ItemDescription
+            {
+                get
+                {
+                    return itemDescription;
+                }
+                set
+                {
+                    itemDescription = value;
+                }
+            }
+        }
         public enum Directions
         {
             North, South, East, West
@@ -189,29 +222,69 @@ namespace Text_Adventure_Editor
                     leadsTo = value;
                 }
             }
-            public string ItemDescription
+            public Directions Direction
             {
                 get
                 {
-                    return itemDescription;
+                    return direction;
                 }
                 set
                 {
-                    ItemDescription = value;
+                    direction = value;
                 }
             }
         }
 
+        private void ReviewButton_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                XmlSerializer reader = new XmlSerializer(typeof(List<NewLevels>));
+                StreamReader file = new StreamReader(path + "\\Levels.xml");
+                List<NewLevels> overview = (List<NewLevels>)reader.Deserialize(file);
+                for (int o = 0; o < overview.Count; o++)
+                {
+                    NewLevels currentLevel = overview[o];
+                    ReviewNewLevels.AppendText("Level Number : " + currentLevel.LevelNo + "\n\n\r\n Level Name: " + currentLevel.RoomTitle + "\n\n\r\n Level Description: " + currentLevel.RoomDescription + "\n\n\r\n" + "Exits: \n\n\r\n ");
+                    for (int p = 0; p < currentLevel.ExitsToAdd.Count; p++)
+                    {
+                        ReviewNewLevels.AppendText(currentLevel.ExitsToAdd[p].Direction.ToString() + " lead to level " + currentLevel.ExitsToAdd[p].LeadsTo.ToString() + ": \n\n\r\n");
+                    }
+                    ReviewNewLevels.AppendText("Items :");
+                    for (int i = 0; i < currentLevel.inventory.Count; i++)
+                    {
+                        ReviewNewLevels.AppendText(currentLevel.inventory[i].ItemName);
+                    }
+                    ReviewNewLevels.AppendText(Environment.NewLine);
+                }
+                file.Close();
+            }
+            catch
+            {
+                MessageBox.Show("No Xml File Found");
+            }
+        }
 
-
-
-
-
-
-
-
-
-
+        private void North_Box_CheckedChanged(object sender, EventArgs e)
+        {
+            int n = 0;
+            bool hasOnce = false;
+            NewExits exitsToAdd = new NewExits();
+            if (string.IsNullOrEmpty(leadsTo1.Text))
+            {
+                North_Box.Checked = false;
+                MessageBox.Show("Please input the level number \n this level leads to");
+            }
+            else if (hasOnce == false && isAdding == false)
+            {
+                Int32.TryParse(leadsTo1.Text, out n);
+                exitsToAdd.LeadsTo = n;
+                exitsToAdd.Direction = Directions.North;
+                hasOnce = true;
+                ExitsToAdd.Add(exitsToAdd);
+            }
+        }
+        
 
 
 
@@ -222,5 +295,9 @@ namespace Text_Adventure_Editor
 
 
     }
+
+
+
     }
+    
 

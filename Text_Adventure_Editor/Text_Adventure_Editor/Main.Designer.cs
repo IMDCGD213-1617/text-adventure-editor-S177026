@@ -56,7 +56,7 @@
             this.AddCompleteLevel = new System.Windows.Forms.Button();
             this.LevelNumberMain = new System.Windows.Forms.Label();
             this.ReviewNewLevels = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.ReviewButton = new System.Windows.Forms.Button();
             this.Main_Drop_Down.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -87,14 +87,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // Level_Name
@@ -230,6 +230,7 @@
             this.North_Box.TabIndex = 22;
             this.North_Box.Text = "North";
             this.North_Box.UseVisualStyleBackColor = true;
+            this.North_Box.CheckedChanged += new System.EventHandler(this.North_Box_CheckedChanged);
             // 
             // Add_Item_To_Level
             // 
@@ -312,7 +313,7 @@
             // 
             this.LevelNumberMain.AutoSize = true;
             this.LevelNumberMain.ForeColor = System.Drawing.Color.White;
-            this.LevelNumberMain.Location = new System.Drawing.Point(279, 34);
+            this.LevelNumberMain.Location = new System.Drawing.Point(312, 34);
             this.LevelNumberMain.Name = "LevelNumberMain";
             this.LevelNumberMain.Size = new System.Drawing.Size(100, 17);
             this.LevelNumberMain.TabIndex = 48;
@@ -328,14 +329,15 @@
             this.ReviewNewLevels.Size = new System.Drawing.Size(257, 162);
             this.ReviewNewLevels.TabIndex = 49;
             // 
-            // button3
+            // ReviewButton
             // 
-            this.button3.Location = new System.Drawing.Point(809, 289);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(123, 37);
-            this.button3.TabIndex = 50;
-            this.button3.Text = "Review Levels";
-            this.button3.UseVisualStyleBackColor = true;
+            this.ReviewButton.Location = new System.Drawing.Point(809, 289);
+            this.ReviewButton.Name = "ReviewButton";
+            this.ReviewButton.Size = new System.Drawing.Size(123, 37);
+            this.ReviewButton.TabIndex = 50;
+            this.ReviewButton.Text = "Review Levels";
+            this.ReviewButton.UseVisualStyleBackColor = true;
+            this.ReviewButton.Click += new System.EventHandler(this.ReviewButton_Click);
             // 
             // Main
             // 
@@ -343,7 +345,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(944, 506);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.ReviewButton);
             this.Controls.Add(this.ReviewNewLevels);
             this.Controls.Add(this.LevelNumberMain);
             this.Controls.Add(this.AddCompleteLevel);
@@ -410,7 +412,7 @@
         private System.Windows.Forms.Button AddCompleteLevel;
         private System.Windows.Forms.Label LevelNumberMain;
         private System.Windows.Forms.TextBox ReviewNewLevels;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button ReviewButton;
     }
 }
 
