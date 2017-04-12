@@ -13,7 +13,6 @@ using System.IO;
 
 namespace Text_Adventure_Editor
 {
-
     public partial class Main : Form
     {
         public string name;
@@ -26,17 +25,13 @@ namespace Text_Adventure_Editor
         NewItems toAddItem;
         List<NewExits> ExitsToAdd = new List<NewExits>();
 
-
         public Main()
         {
             InitializeComponent();
-            LevelNumberMain.Text = "Level Number:" + levelnumber;
+            LevelNumberMain.Text = "Level:" + levelnumber;
             ReviewNewLevels.ScrollBars = ScrollBars.Vertical;
             LevelNumberMain.Font = new Font("Arial", 15, FontStyle.Bold);
-
-
         }
-
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -60,13 +55,21 @@ namespace Text_Adventure_Editor
             NewItemsToAdd = new List<NewItems>();
             Clear();
         }
-
         void Clear()
         {
             North_Box.Checked = false;
             East_Box.Checked = false;
             South_Box.Checked = false;
             West_Box.Checked = false;
+
+            New_Level_Name.Text = "";
+            New_Level_Description.Text = "";
+
+            leadsTo1.Text = "";
+            leadsTo2.Text = "";
+            leadsTo3.Text = "";
+            leadsTo4.Text = "";
+            isAdding = false;
 
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,19 +84,22 @@ namespace Text_Adventure_Editor
             }
 
         }
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Exit Application?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                Application.Exit();
+        }
 
         private void SaveValues(List<NewLevels> v)
         {
             path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
-
             XmlSerializer xs = new XmlSerializer(typeof(List<NewLevels>));
-            using (FileStream fs = new FileStream(@"" + path + "\\NewLevels.xml", FileMode.Create))
+            using (FileStream fs = new FileStream(@""+ path +  "\\NewLevels.xml", FileMode.Create))
             {
                 xs.Serialize(fs, v);
             }
-            MessageBox.Show("Saved to " + path + "\\NewLevels.xml");
+            MessageBox.Show("Saved to " + path +"\\NewLevels.xml");
         }
-
         public class NewLevels
         {
             private int levelNo;
@@ -162,8 +168,7 @@ namespace Text_Adventure_Editor
                 }
             }
         }
-
-        public class NewItems
+       public class NewItems
         {
             private string itemName;
             private string itemDescription;
@@ -172,7 +177,6 @@ namespace Text_Adventure_Editor
             {
 
             }
-
             public string ItemName
             {
                 get
@@ -200,7 +204,6 @@ namespace Text_Adventure_Editor
         {
             North, South, East, West
         };
-
         public class NewExits
         {
             public static string[] shortDirections = { "N", "S", "E", "W" };
@@ -234,7 +237,6 @@ namespace Text_Adventure_Editor
                 }
             }
         }
-
         private void ReviewButton_Click(object sender, EventArgs e)
         {
             try
@@ -264,7 +266,6 @@ namespace Text_Adventure_Editor
                 MessageBox.Show("No Xml File Found");
             }
         }
-
         private void North_Box_CheckedChanged(object sender, EventArgs e)
         {
             int n = 0;
@@ -284,7 +285,6 @@ namespace Text_Adventure_Editor
                 ExitsToAdd.Add(exitsToAdd);
             }
         }
-
         private void East_Box_CheckedChanged(object sender, EventArgs e)
         {
             int n = 0;
@@ -304,7 +304,6 @@ namespace Text_Adventure_Editor
                 ExitsToAdd.Add(exitsToAdd);
             }
         }
-
         private void South_Box_CheckedChanged(object sender, EventArgs e)
         {
             int n = 0;
@@ -343,20 +342,18 @@ namespace Text_Adventure_Editor
                 ExitsToAdd.Add(exitsToAdd);
             }
         }
-
-
-
-
-
-
-
-
-
+        private void Add_Item_To_Level_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Item Added");
+            toAddItem = new NewItems();
+            toAddItem.ItemName = New_Level_Items.Text;
+            toAddItem.ItemDescription = New_Item_Description.Text;
+            NewItemsToAdd.Add(toAddItem);
+            New_Level_Items.Text = "";
+            New_Item_Description.Text = "";
+            MessageBox.Show(NewItemsToAdd.Count.ToString() + "Items Added");
+        }
     }
-
-
-
-
     }
     
 

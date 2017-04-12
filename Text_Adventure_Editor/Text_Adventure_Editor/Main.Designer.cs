@@ -94,8 +94,9 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(115, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(181, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // Level_Name
             // 
@@ -243,6 +244,7 @@
             this.Add_Item_To_Level.TabIndex = 39;
             this.Add_Item_To_Level.Text = "Add Item";
             this.Add_Item_To_Level.UseVisualStyleBackColor = true;
+            this.Add_Item_To_Level.Click += new System.EventHandler(this.Add_Item_To_Level_Click);
             // 
             // label5
             // 
