@@ -243,7 +243,7 @@ namespace Text_Adventure_Editor
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<NewLevels>));
 
-                StreamReader file = new StreamReader(path + "\\Levels.xml");
+                StreamReader file = new StreamReader(path + "\\NewLevels.xml");
 
                 List<NewLevels> overview = (List<NewLevels>)reader.Deserialize(file);
 
@@ -252,13 +252,13 @@ namespace Text_Adventure_Editor
                     NewLevels currentLevel = overview[p];
 
 
-                    ReviewNewLevels.AppendText("Level Number : " + currentLevel.LevelNo + "\n\n\r\n Level Name: " + currentLevel.RoomTitle + "\n\n\r\n Level Description : " + currentLevel.RoomDescription + "\n\n\r\n" +
+                    ReviewNewLevels.AppendText("Level Number: " + currentLevel.LevelNo + "\n\n\r\nLevel Name: " + currentLevel.RoomTitle + "\n\n\r\nLevel Description: " + currentLevel.RoomDescription + "\n\n\r\n" +
                         "Exits: \n\n\r\n ");
                     for (int z = 0; z < currentLevel.ExitsToAdd.Count; z++)
                     {
                         ReviewNewLevels.AppendText(currentLevel.ExitsToAdd[z].Direction.ToString() + " leads to level " + currentLevel.ExitsToAdd[z].LeadsTo.ToString() + ": \n\n\r\n");
                     }
-                    ReviewNewLevels.AppendText("Items :");
+                    ReviewNewLevels.AppendText("Items:");
                     for (int s = 0; s < currentLevel.inventory.Count; s++)
                     {
                         ReviewNewLevels.AppendText(currentLevel.inventory[s].ItemName);
