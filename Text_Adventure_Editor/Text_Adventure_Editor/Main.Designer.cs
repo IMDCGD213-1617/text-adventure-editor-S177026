@@ -187,6 +187,7 @@
             this.West_Box.TabIndex = 26;
             this.West_Box.Text = "West";
             this.West_Box.UseVisualStyleBackColor = true;
+            this.West_Box.CheckedChanged += new System.EventHandler(this.West_Box_CheckedChanged);
             // 
             // South_Box
             // 
@@ -198,6 +199,7 @@
             this.South_Box.TabIndex = 25;
             this.South_Box.Text = "South ";
             this.South_Box.UseVisualStyleBackColor = true;
+            this.South_Box.CheckedChanged += new System.EventHandler(this.South_Box_CheckedChanged);
             // 
             // East_Box
             // 
@@ -209,6 +211,7 @@
             this.East_Box.TabIndex = 24;
             this.East_Box.Text = "East";
             this.East_Box.UseVisualStyleBackColor = true;
+            this.East_Box.CheckedChanged += new System.EventHandler(this.East_Box_CheckedChanged);
             // 
             // label4
             // 

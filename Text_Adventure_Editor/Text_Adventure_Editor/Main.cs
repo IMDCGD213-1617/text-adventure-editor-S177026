@@ -284,7 +284,65 @@ namespace Text_Adventure_Editor
                 ExitsToAdd.Add(exitsToAdd);
             }
         }
-        
+
+        private void East_Box_CheckedChanged(object sender, EventArgs e)
+        {
+            int n = 0;
+            bool hasOnce = false;
+            NewExits exitsToAdd = new NewExits();
+            if (string.IsNullOrEmpty(leadsTo2.Text))
+            {
+                East_Box.Checked = false;
+                MessageBox.Show("Please input the level number \n this level leads to");
+            }
+            else if(hasOnce == false && isAdding == false)
+            {
+                Int32.TryParse(leadsTo2.Text, out n);
+                exitsToAdd.LeadsTo = n;
+                exitsToAdd.Direction = Directions.East;
+                hasOnce = true;
+                ExitsToAdd.Add(exitsToAdd);
+            }
+        }
+
+        private void South_Box_CheckedChanged(object sender, EventArgs e)
+        {
+            int n = 0;
+            bool hasOnce = false;
+            NewExits exitsToAdd = new NewExits();
+            if (string.IsNullOrEmpty(leadsTo3.Text))
+            {
+                South_Box.Checked = false;
+                MessageBox.Show("Please input the level number \n this level leads to");
+            }
+            else if (hasOnce == false && isAdding == false)
+            {
+                Int32.TryParse(leadsTo3.Text, out n);
+                exitsToAdd.LeadsTo = n;
+                exitsToAdd.Direction = Directions.South;
+                hasOnce = true;
+                ExitsToAdd.Add(exitsToAdd);
+            }
+        }
+        private void West_Box_CheckedChanged(object sender, EventArgs e)
+        {
+            int n = 0;
+            bool hasOnce = false;
+            NewExits exitsToAdd = new NewExits();
+            if (string.IsNullOrEmpty(leadsTo4.Text))
+            {
+                West_Box.Checked = false;
+                MessageBox.Show("Please input the level number \n this level leads to");
+            }
+            else if (hasOnce == false && isAdding == false)
+            {
+                Int32.TryParse(leadsTo4.Text, out n);
+                exitsToAdd.LeadsTo = n;
+                exitsToAdd.Direction = Directions.West;
+                hasOnce = true;
+                ExitsToAdd.Add(exitsToAdd);
+            }
+        }
 
 
 
@@ -295,6 +353,7 @@ namespace Text_Adventure_Editor
 
 
     }
+
 
 
 
