@@ -94,11 +94,11 @@ namespace Text_Adventure_Editor
         {
             path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
             XmlSerializer xs = new XmlSerializer(typeof(List<NewLevels>));
-            using (FileStream fs = new FileStream(@""+ path +  "\\NewLevels.xml", FileMode.Create))
+            using (FileStream fs = new FileStream(@"" + path + "\\NewLevels.xml", FileMode.Create))
             {
                 xs.Serialize(fs, v);
             }
-            MessageBox.Show("Saved to " + path +"\\NewLevels.xml");
+            MessageBox.Show("Saved to " + path + "\\NewLevels.xml");
         }
         public class NewLevels
         {
@@ -242,28 +242,36 @@ namespace Text_Adventure_Editor
             try
             {
                 XmlSerializer reader = new XmlSerializer(typeof(List<NewLevels>));
+
                 StreamReader file = new StreamReader(path + "\\Levels.xml");
+
                 List<NewLevels> overview = (List<NewLevels>)reader.Deserialize(file);
-                for (int o = 0; o < overview.Count; o++)
+
+                for (int p = 0; p < overview.Count; p++)
                 {
-                    NewLevels currentLevel = overview[o];
-                    ReviewNewLevels.AppendText("Level Number : " + currentLevel.LevelNo + "\n\n\r\n Level Name: " + currentLevel.RoomTitle + "\n\n\r\n Level Description: " + currentLevel.RoomDescription + "\n\n\r\n" + "Exits: \n\n\r\n ");
-                    for (int p = 0; p < currentLevel.ExitsToAdd.Count; p++)
+                    NewLevels currentLevel = overview[p];
+
+
+                    ReviewNewLevels.AppendText("Level Number : " + currentLevel.LevelNo + "\n\n\r\n Level Name: " + currentLevel.RoomTitle + "\n\n\r\n Level Description : " + currentLevel.RoomDescription + "\n\n\r\n" +
+                        "Exits: \n\n\r\n ");
+                    for (int z = 0; z < currentLevel.ExitsToAdd.Count; z++)
                     {
-                        ReviewNewLevels.AppendText(currentLevel.ExitsToAdd[p].Direction.ToString() + " lead to level " + currentLevel.ExitsToAdd[p].LeadsTo.ToString() + ": \n\n\r\n");
+                        ReviewNewLevels.AppendText(currentLevel.ExitsToAdd[z].Direction.ToString() + " leads to level " + currentLevel.ExitsToAdd[z].LeadsTo.ToString() + ": \n\n\r\n");
                     }
                     ReviewNewLevels.AppendText("Items :");
-                    for (int i = 0; i < currentLevel.inventory.Count; i++)
+                    for (int s = 0; s < currentLevel.inventory.Count; s++)
                     {
-                        ReviewNewLevels.AppendText(currentLevel.inventory[i].ItemName);
+                        ReviewNewLevels.AppendText(currentLevel.inventory[s].ItemName);
                     }
+
                     ReviewNewLevels.AppendText(Environment.NewLine);
+
                 }
                 file.Close();
             }
             catch
             {
-                MessageBox.Show("No Xml File Found");
+                MessageBox.Show("No Xml file found");
             }
         }
         private void North_Box_CheckedChanged(object sender, EventArgs e)
