@@ -39,8 +39,7 @@ namespace TextAdventure
             playerInv = new Item();
             customInventory = new List<NewItems>();
 
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("For all commands type 'help'!");
+          
             Console.ForegroundColor = ConsoleColor.White;
             Console.Write("\nWelcome, prepare yourself for a journey.\n");
 
@@ -68,19 +67,14 @@ namespace TextAdventure
                     for (int p = 0; p < overview.Count; p++)
                     {
                         NewLevels currentLevel = overview[p];
-
-
                         if (currentLevel.LevelNo == 1)
                         {
                             customLocation = currentLevel;
                         }
-
-
                     }
                     customAdventure = true;
                     Console.WriteLine("File Loaded\n");
                     file.Close();
-
                 }
                 catch
                 {
@@ -290,6 +284,12 @@ namespace TextAdventure
             }
         }
 
+        public void showInstructions()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("For all commands type 'help'!");
+        }
+
         public void showLocation()
         {                  
             if (customAdventure == false)
@@ -374,36 +374,53 @@ namespace TextAdventure
             }
 
             #region Take 
-            //Allows player to take items from a level and put it in their inventory
-
             if (input.Length > 1)
             {
                 if (input[0] == "take" || input[0] == "t")
                 {
-                    for (int i = 0; i < currentLocation.getInventory().Count; i++)
+                    if (customAdventure == false)
                     {
-                        if (currentLocation.getInventory()[i].name == input[1])
+                        for (int i = 0; i < currentLocation.getInventory().Count; i++)
                         {
-                            Item result = currentLocation.takeItem(input[1]);
-                            playerInv.AddItems(result);
-                            Console.Clear();
-                            showLocation();
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            if (result != null)
-                                Console.WriteLine("\nYou have picked up a " + input[1] + "!\n");
-                            else
-                                Console.WriteLine("Invalid item!");
-
-                            return;
+                            if (currentLocation.getInventory()[i].name == input[1])
+                            {
+                                Item result = currentLocation.takeItem(input[1]);
+                                playerInv.AddItems(result);
+                                Console.Clear();
+                                showLocation();
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                if (result != null)
+                                    Console.WriteLine("\nYou have picked up a " + input[1] + "!\n");
+                                else
+                                    Console.WriteLine("Invalid item!");
+                                return;
+                            }
                         }
                     }
-                    Console.Clear();
-                    showLocation();
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("You can't do that!");
-                    return;
+                    if (customAdventure == true)
+                    {
+                        Console.WriteLine("\n\n>A quick look in your bag reveals the following:\n");
+
+                        for (int i = 0; i < customLocation.inventory.Count; i++)
+                        {
+                            if (command.Contains(customLocation.inventory[i].ItemName))
+                            {
+                                NewItems addItem = customLocation.inventory[i];
+                                Console.WriteLine("\n>You take the " + addItem.ItemName + " and place it in your bag ");
+                                customInventory.Add(addItem);
+                                customLocation.inventory.Remove(addItem);
+                                break;
+                            }
+                        }
+                    }
                 }
+                Console.Clear();
+                showLocation();
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("You can't do that!");
+                return;
             }
+         
             #endregion
 
             #region Examine 
@@ -413,13 +430,28 @@ namespace TextAdventure
             {
                 if (input[0] == "examine" || input[0] == "e")
                 {
+                    if (customAdventure == false)
+                    {
 
-                    string desc = playerInv.GetDescription(input[1]);
+                        string desc = playerInv.GetDescription(input[1]);
                     Console.Clear();
                     showLocation();
                     Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("\n" + desc + "\n");
                     return;
+                }
+            }
+
+                if (customAdventure == true)
+                {
+                    foreach (NewItems NewItems in customLocation.inventory)
+                    {
+                        if (command.Contains(" " + NewItems.ItemName))
+                        {
+                            Console.WriteLine("\n>" + NewItems.ItemName + "\n");
+                            break;
+                        }
+                    }
                 }
             }
             #endregion
@@ -657,8 +689,9 @@ Push any key to return!");
 
             Console.ForegroundColor = ConsoleColor.Magenta;
             //shows the items in the players inventory, says its empty if you have nothing
-
-            if (playerInv.getPlayerInventory().Count > 0)
+            if (customAdventure == false)
+            {          
+                if (playerInv.getPlayerInventory().Count > 0)
             {
                 Console.WriteLine("\nA quick look in your bag reveals the following:\n");
 
@@ -671,10 +704,27 @@ Push any key to return!");
             {
                 Console.WriteLine("Your bag is empty.");
             }
-
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.White;
 
+                if (customAdventure == true)
+                {
+                    if (customInventory.Count > 0)
+                    {
+                        Console.WriteLine("\n\n>A quick look in your bag reveals the following:\n");
+
+                        foreach (NewItems newItems in customInventory)
+                        {
+                            Console.WriteLine(newItems.ItemName);
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine(">Your bag is empty.");
+                    }
+                }
+                Console.WriteLine("");
+            }
         }
 
         public void Update()
